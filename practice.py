@@ -2,6 +2,8 @@ from astropy import units as u
 import astropy.coordinates as coord
 from astropy.coordinates import SkyCoord
 import math
+import astropy.constants as const
+import numpy as np
 
 ### Simple Coordinate Transformations for Draco and Sagittarius ###
 
@@ -43,4 +45,18 @@ radianspersecond = radians * 1/(365*24*3600)
 kilometers = 50 * 3.086e16
 
 kilometerspersecond = radianspersecond * kilometers
-print(kilometerspersecond)
+# print(kilometerspersecond)
+# print( ( (50*u.kpc)*(1*u.mas.to(u.rad)/u.year) ).to(u.km/u.s)  )
+
+### Approximately how many times has the Sun circled the center of the Galaxy since the star's formation? ###
+
+velocity = np.sqrt(const.G*u.M_sun*0.3e12/(8*u.kpc)).to(u.km/u.s)
+orbital_period = (2*np.pi*(8*u.kpc)/velocity).to(u.Myr)
+# print(orbital_period)
+count = (5*u.Gyr).to(u.Myr)/(orbital_period)
+print(count)
+
+# top = 2*np.pi*(8*u.kpc)
+# bottom = np.sqrt(const.G*0.3e12*u.M_sun/(8*u.kpc*1)).to(u.km/u.s)
+# (top/bottom).to(u.Myr)
+# # <Quantity 122.38276337 Myr>
