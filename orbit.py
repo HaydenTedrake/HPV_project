@@ -6,4 +6,24 @@ import gala.dynamics as gd
 import gala.potential as gp
 from gala.units import galactic
 
-pot = gp.NFWPotential(mvir = 1e12 * u.M_sun, conc=15.0, units=galactic)
+# define potential
+## I was told to do an NFW potential with mass 1e12, but I'm not sure how to define that
+pot = gp.NFWPotential.from_circular_velocity(v_c=200*u.km/u.s, r_s=10.*u.kpc, units=galactic)
+
+# set initial conditions and specify time-stepping
+ics = gd.PhaseSpacePosition(pos=[10,0,0.] * u.kpc, vel=[0,175,0] * u.km/u.s)
+orbit = gp.Hamiltonian(pot).integrate_orbit(ics, dt=2., n_steps=2000)
+
+# integrating orbits in parallel
+norbits = 128
+new_pos = np.random.normal(ics.pos.xyz.to(u.pc).value, 100., size=(norbits,3)).T * u.pc
+new_vel = np.random.normal(ics.vel.d_xyz.to(u.km/u.s).value, 1., size=(norbits,3)).T * u.km/u.s
+new_ics = gd.PhaseSpacePosition(pos=new_pos, vel=new_vel)
+orbits = gp.Hamiltonian(pot).integrate_orbit(new_ics, dt=2., n_steps=2000)
+
+# plot
+grid = np.linspace(-15,15,64)
+fig,ax = plt.subplots(1, 1, figsize=(5,5))
+fig = pot.plot_contours(grid=(grid,grid,0), cmap='Greys', ax=ax)
+fig = orbits[-1].plot(['x', 'y'], color='#9ecae1', s=1., alpha=0.5, axes=[ax], auto_aspect=False)
+plt.show()
