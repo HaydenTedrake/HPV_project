@@ -4,11 +4,15 @@ import numpy as np
 import gala.integrate as gi
 import gala.dynamics as gd
 import gala.potential as gp
+from gala.potential import NFWPotential
 from gala.units import galactic
 
 # define potential
 ## I was told to do an NFW potential with mass 1e12, but I'm not sure how to define that
-pot = gp.NFWPotential.from_circular_velocity(v_c=200*u.km/u.s, r_s=10.*u.kpc, units=galactic)
+# from tutorial
+# pot = gp.NFWPotential.from_circular_velocity(v_c=200*u.km/u.s, r_s=10.*u.kpc, units=galactic)
+# other method?
+pot = NFWPotential.from_M200_c(M200=1e12 * u.M_sun, c=10.0, units=galactic)
 
 # set initial conditions and specify time-stepping
 ics = gd.PhaseSpacePosition(pos=[10,0,0.] * u.kpc, vel=[0,175,0] * u.km/u.s)
