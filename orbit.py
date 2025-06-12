@@ -8,7 +8,6 @@ from gala.potential import NFWPotential
 from gala.units import galactic
 
 # define potential
-## I was told to do an NFW potential with mass 1e12, but I'm not sure how to define that
 # from tutorial
 # pot = gp.NFWPotential.from_circular_velocity(v_c=200*u.km/u.s, r_s=10.*u.kpc, units=galactic)
 # other method?
