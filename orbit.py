@@ -24,24 +24,7 @@ new_vel = np.random.normal(ics.vel.d_xyz.to(u.km/u.s).value, 1., size=(norbits,3
 new_ics = gd.PhaseSpacePosition(pos=new_pos, vel=new_vel)
 orbits = pot.integrate_orbit(new_ics, dt=1., n_steps=100)
 
-# # plot
-# grid = np.linspace(-15,15,64)
-# fig,ax = plt.subplots(1, 1, figsize=(5,5))
-# fig = pot.plot_contours(grid=(grid,grid,0), cmap='Greys', ax=ax)
-# fig = orbits[-1].plot(['x', 'y'], color='#9ecae1', s=1., alpha=0.5, axes=[ax], auto_aspect=False)
-# plt.show()
-
-
-# # plot
-# grid = np.linspace(-15,15,64)
-# fig,ax = plt.subplots(1, 1, figsize=(5,5))
-# fig = pot.plot_contours(grid=(grid,grid,0), cmap='Greys', ax=ax)
-# fig = orbits[:,0].plot(['x', 'y'],)
-# plt.show()
-
-# print(orbits.shape)
-
-# Plot the first particle
+# plot the first particle
 times = np.arange(orbits.ntimes)
 pos_output = orbits[:,0].pos.xyz.value
 
@@ -52,7 +35,4 @@ plt.colorbar()
 plt.xlabel('X Value')
 plt.ylabel('Y Value')
 plt.title('Y vs X')
-# plt.show()
-
-print((1*u.kpc/(500*u.km/u.s)).to(u.Myr))
-print((1*u.kpc/(1*u.Myr)).to(u.km/u.s))
+plt.show()
