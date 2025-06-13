@@ -53,7 +53,7 @@ kilometerspersecond = radianspersecond * kilometers
 velocity = np.sqrt(const.G*u.M_sun*0.3e12/(8*u.kpc)).to(u.km/u.s)
 orbital_period = (2*np.pi*(8*u.kpc)/velocity).to(u.Myr)
 # print(orbital_period)
-count = (5*u.Gyr).to(u.Myr)/(orbital_period)
+count = ((5*u.Gyr)/(orbital_period)).to(u.dimensionless_unscaled)
 print(count)
 
 # top = 2*np.pi*(8*u.kpc)
