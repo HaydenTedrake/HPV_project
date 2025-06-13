@@ -8,9 +8,6 @@ from gala.potential import NFWPotential
 from gala.units import galactic
 
 # define potential
-# from tutorial
-# pot = gp.NFWPotential.from_circular_velocity(v_c=200*u.km/u.s, r_s=10.*u.kpc, units=galactic)
-# other method?
 pot = NFWPotential.from_M200_c(M200=1e12 * u.M_sun, c=10.0, units=galactic)
 
 # set initial conditions and specify time-stepping
@@ -22,7 +19,7 @@ norbits = 128
 new_pos = np.random.normal(ics.pos.xyz.to(u.pc).value, 100., size=(norbits,3)).T * u.pc
 new_vel = np.random.normal(ics.vel.d_xyz.to(u.km/u.s).value, 1., size=(norbits,3)).T * u.km/u.s
 new_ics = gd.PhaseSpacePosition(pos=new_pos, vel=new_vel)
-orbits = pot.integrate_orbit(new_ics, dt=1., n_steps=100)
+orbits = pot.integrate_orbit(new_ics, dt=1*u.Myr, n_steps=100)
 
 # plot the first particle
 times = np.arange(orbits.ntimes)
