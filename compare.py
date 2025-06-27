@@ -187,15 +187,15 @@ dwarf_orbit2 = pot.integrate_orbit(dwarf_ics, dt=-0.1*u.Myr, n_steps=5000) # 500
 dwarf_orbit3 = pot.integrate_orbit(dwarf_ics, dt=-0.1*u.Myr, n_steps=1000) # 100 Myr
 
 n_samples = 100
-ra_samples = np.random.normal(dict['ra'], dict['e_ra'], n_samples)
-dec_samples = np.random.normal(dict['dec'], dict['e_dec'], n_samples)
-dist_samples = np.random.normal(dict['dist'], dict['e_dist'], n_samples)
-pmra_samples = np.random.normal(dict['pmra'], dict['e_pmra'], n_samples)
-pmdec_samples = np.random.normal(dict['pmdec'], dict['e_pmdec'], n_samples)
-rv_samples = np.random.normal(dict['rv'], dict['e_rv'], n_samples)
+dwarf_ra_samples = np.random.normal(dict['ra'], dict['e_ra'], n_samples)
+dwarf_dec_samples = np.random.normal(dict['dec'], dict['e_dec'], n_samples)
+dwarf_dist_samples = np.random.normal(dict['dist'], dict['e_dist'], n_samples)
+dwarf_pmra_samples = np.random.normal(dict['pmra'], dict['e_pmra'], n_samples)
+dwarf_pmdec_samples = np.random.normal(dict['pmdec'], dict['e_pmdec'], n_samples)
+dwarf_rv_samples = np.random.normal(dict['rv'], dict['e_rv'], n_samples)
 
-ics_list = []
-for ra, dec, dist, pmra, pmdec, rv in zip(ra_samples, dec_samples, dist_samples, pmra_samples, pmdec_samples, rv_samples):
+dwarf_ics_list = []
+for ra, dec, dist, pmra, pmdec, rv in zip(dwarf_ra_samples, dwarf_dec_samples, dwarf_dist_samples, dwarf_pmra_samples, dwarf_pmdec_samples, dwarf_rv_samples):
     sc = coord.SkyCoord(ra=ra * u.degree,
                   dec=dec * u.degree,
                   distance=dist * u.kpc,
@@ -205,21 +205,21 @@ for ra, dec, dist, pmra, pmdec, rv in zip(ra_samples, dec_samples, dist_samples,
                   frame="icrs")
     gc = sc.transform_to(coord.Galactocentric)
     ics = gd.PhaseSpacePosition(pos=gc.cartesian.xyz, vel=gc.velocity.d_xyz)
-    ics_list.append(ics)
+    dwarf_ics_list.append(ics)
 
-orbits1 = []
-orbits2 = []
-orbits3 = []
-orbits1.append(dwarf_orbit1)
-orbits2.append(dwarf_orbit2)
-orbits3.append(dwarf_orbit3)
-for ics in ics_list:
+dwarf_orbits1 = []
+dwarf_orbits2 = []
+dwarf_orbits3 = []
+dwarf_orbits1.append(dwarf_orbit1)
+dwarf_orbits2.append(dwarf_orbit2)
+dwarf_orbits3.append(dwarf_orbit3)
+for ics in dwarf_ics_list:
     orbit1 = pot.integrate_orbit(ics, dt=-0.1*u.Myr, n_steps=10000)
     orbit2 = pot.integrate_orbit(ics, dt=-0.1*u.Myr, n_steps=5000)
     orbit3 = pot.integrate_orbit(ics, dt=-0.1*u.Myr, n_steps=1000)
-    orbits1.append(orbit1)
-    orbits2.append(orbit2)
-    orbits3.append(orbit3)
+    dwarf_orbits1.append(orbit1)
+    dwarf_orbits2.append(orbit2)
+    dwarf_orbits3.append(orbit3)
 
 # Define comparing technique
 def compare(x_vals1, y_vals1, x_vals2, y_vals2):
@@ -240,23 +240,70 @@ def compare(x_vals1, y_vals1, x_vals2, y_vals2):
     Dx = dx / combined_sigma_x
     Dy = dy / combined_sigma_y
 
-    return Dx, Dy
+    return (Dx, Dy)
+
+map = {
+    0: 'hvs5',
+    1: 'hvs8',
+    2: 'hvs14',
+    3: 'hvs17',
+    4: 'hvs23',
+}
 
 # 1 Gyr in the past
-red_points = []
+dwarf_points = []
 
-for i, orbit in enumerate(orbits1):
+for i, orbit in enumerate(dwarf_orbits1):
     final_pos = orbit[-1].pos.xyz.to(u.kpc).value[:3]
-    if i == 0:
-        pass
-    else:
-        red_points.append(final_pos)
+    dwarf_points.append(final_pos)
 
-red_points = np.array(red_points)
+dwarf_points = np.array(dwarf_points)
 
-x = red_points[:, 0]
-y = red_points[:, 1]
-z = red_points[:, 2]
+dwarf_x = dwarf_points[:, 0]
+dwarf_y = dwarf_points[:, 1]
+dwarf_z = dwarf_points[:, 2]
 
-for star in [hvs5, hvs8, hvs14, hvs17, hvs23]:
-    pass
+for num, star in enumerate([hvs5, hvs8, hvs14, hvs17, hvs23]):
+    ra_samples = np.random.normal(star['ra'], star['e_ra'], n_samples)
+    dec_samples = np.random.normal(star['dec'], star['e_dec'], n_samples)
+    dist_samples = np.random.normal(star['dist'], star['e_dist'], n_samples)
+    pmra_samples = np.random.normal(star['pmra'], star['e_pmra'], n_samples)
+    pmdec_samples = np.random.normal(star['pmdec'], star['e_pmdec'], n_samples)
+    rv_samples = np.random.normal(star['rv'], star['e_rv'], n_samples)
+
+    ics_list = []
+    for ra, dec, dist, pmra, pmdec, rv in zip(ra_samples, dec_samples, dist_samples, pmra_samples, pmdec_samples, rv_samples):
+        sc = coord.SkyCoord(ra=ra * u.degree,
+        dec=dec * u.degree,
+        distance=dist * u.kpc,
+        pm_ra_cosdec=pmra * (u.mas / u.yr),
+        pm_dec=pmdec * (u.mas / u.yr),
+        radial_velocity=rv * (u.km / u.s),
+        frame="icrs")
+        gc = sc.transform_to(coord.Galactocentric)
+        ics = gd.PhaseSpacePosition(pos=gc.cartesian.xyz, vel=gc.velocity.d_xyz)
+        ics_list.append(ics)
+            
+    orbits = []
+    orbits.append(orbit)
+    for ics in ics_list:
+        orbit = pot.integrate_orbit(ics, dt=-0.1*u.Myr, n_steps=10000)
+        orbits.append(orbit)
+
+    points = []
+
+    for i, orbit in enumerate(orbits):
+        final_pos = orbits[-1].pos.xyz.to(u.kpc).value[:3]
+        points.append(final_pos)
+
+    points = np.array(points)
+
+    x = points[:, 0]
+    y = points[:, 1]
+    z = points[:, 2]
+
+    XY = compare(dwarf_x, dwarf_y, x, y)
+    XZ = compare(dwarf_x, dwarf_z, x, z)
+    YZ = compare(dwarf_y, dwarf_z, y, z)
+
+    print(f"1 Gyr, {map[num]}, XY: {XY}, XZ: {XZ}, YZ: {YZ}")
