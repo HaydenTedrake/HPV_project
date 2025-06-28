@@ -265,3 +265,47 @@ for num, star in enumerate([hvs5, hvs8, hvs14, hvs17, hvs23]):
     distance_yz = np.sqrt(YZ[0]**2 + YZ[1]**2)
 
     print(f"1 Gyr, {map[num]}, XY: {distance_xy}, XZ: {distance_xz}, YZ: {distance_yz}")
+
+    # 500 Myr
+    dwarf_points = []
+
+    for i, orbit in enumerate(dwarf_orbits2):
+        final_pos = orbit[-1].pos.xyz.to(u.kpc).value[:3]
+        dwarf_points.append(final_pos)
+
+    dwarf_points = np.array(dwarf_points)
+
+    dwarf_x = dwarf_points[:, 0]
+    dwarf_y = dwarf_points[:, 1]
+    dwarf_z = dwarf_points[:, 2]
+
+    XY = compare(dwarf_x, dwarf_y, x, y)
+    distance_xy = np.sqrt(XY[0]**2 + XY[1]**2)
+    XZ = compare(dwarf_x, dwarf_z, x, z)
+    distance_xz = np.sqrt(XZ[0]**2 + XZ[1]**2)
+    YZ = compare(dwarf_y, dwarf_z, y, z)
+    distance_yz = np.sqrt(YZ[0]**2 + YZ[1]**2)
+
+    print(f"500 Myr, {map[num]}, XY: {distance_xy}, XZ: {distance_xz}, YZ: {distance_yz}")
+
+    # 100 Myr
+    dwarf_points = []
+
+    for i, orbit in enumerate(dwarf_orbits3):
+        final_pos = orbit[-1].pos.xyz.to(u.kpc).value[:3]
+        dwarf_points.append(final_pos)
+
+    dwarf_points = np.array(dwarf_points)
+
+    dwarf_x = dwarf_points[:, 0]
+    dwarf_y = dwarf_points[:, 1]
+    dwarf_z = dwarf_points[:, 2]
+
+    XY = compare(dwarf_x, dwarf_y, x, y)
+    distance_xy = np.sqrt(XY[0]**2 + XY[1]**2)
+    XZ = compare(dwarf_x, dwarf_z, x, z)
+    distance_xz = np.sqrt(XZ[0]**2 + XZ[1]**2)
+    YZ = compare(dwarf_y, dwarf_z, y, z)
+    distance_yz = np.sqrt(YZ[0]**2 + YZ[1]**2)
+
+    print(f"100 Myr, {map[num]}, XY: {distance_xy}, XZ: {distance_xz}, YZ: {distance_yz}")
