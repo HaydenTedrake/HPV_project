@@ -86,19 +86,35 @@ hvs23 = {
     }
 
 # Dwarf galaxy
+# # Leo I
+# dict = {
+#     'ra': 152.117175, #degree
+#     'e_ra': 0.0001, #degree
+#     'dec': 12.3065, #degree
+#     'e_dec': 0.0001, #degree
+#     'dist': 254.0, #kpc
+#     'e_dist': 15.5, #kpc
+#     'pmra': -0.007, #mas/yr
+#     'e_pmra': 0.035, #mas/yr
+#     'pmdec': -0.119, #mas/yr not updated
+#     'e_pmdec': 0.026, #mas/yr not updated
+#     'rv': 282.9, #km/s
+#     'e_rv': 0.5, #km/s
+#     }
+# Sextans
 dict = {
-    'ra': 152.117175, #degree
+    'ra': 153.262, #degree
     'e_ra': 0.0001, #degree
-    'dec': 12.3065, #degree
+    'dec': -1.6147, #degree
     'e_dec': 0.0001, #degree
-    'dist': 254.0, #kpc
-    'e_dist': 15.5, #kpc
+    'dist': 95.0, #kpc
+    'e_dist': 3.0, #kpc
     'pmra': -0.007, #mas/yr
     'e_pmra': 0.035, #mas/yr
     'pmdec': -0.119, #mas/yr not updated
     'e_pmdec': 0.026, #mas/yr not updated
-    'rv': 282.9, #km/s
-    'e_rv': 0.5, #km/s
+    'rv': 224.3, #km/s
+    'e_rv': 0.1, #km/s
     }
 dwarf = coord.SkyCoord(
     ra=dict['ra'] * u.degree,
@@ -263,8 +279,9 @@ for num, star in enumerate([hvs5, hvs8, hvs14, hvs17, hvs23]):
     distance_xz = np.sqrt(XZ[0]**2 + XZ[1]**2)
     YZ = compare(dwarf_y, dwarf_z, y, z)
     distance_yz = np.sqrt(YZ[0]**2 + YZ[1]**2)
+    total = np.sqrt(distance_xy**2 + distance_xz**2 + distance_yz**2)
 
-    print(f"1 Gyr, {map[num]}, XY: {distance_xy}, XZ: {distance_xz}, YZ: {distance_yz}")
+    print(f"1 Gyr, {map[num]}, {total}")
 
     # 500 Myr
     dwarf_points = []
@@ -285,8 +302,9 @@ for num, star in enumerate([hvs5, hvs8, hvs14, hvs17, hvs23]):
     distance_xz = np.sqrt(XZ[0]**2 + XZ[1]**2)
     YZ = compare(dwarf_y, dwarf_z, y, z)
     distance_yz = np.sqrt(YZ[0]**2 + YZ[1]**2)
+    total = np.sqrt(distance_xy**2 + distance_xz**2 + distance_yz**2)
 
-    print(f"500 Myr, {map[num]}, XY: {distance_xy}, XZ: {distance_xz}, YZ: {distance_yz}")
+    print(f"500 Myr, {map[num]}, {total}")
 
     # 100 Myr
     dwarf_points = []
@@ -307,5 +325,6 @@ for num, star in enumerate([hvs5, hvs8, hvs14, hvs17, hvs23]):
     distance_xz = np.sqrt(XZ[0]**2 + XZ[1]**2)
     YZ = compare(dwarf_y, dwarf_z, y, z)
     distance_yz = np.sqrt(YZ[0]**2 + YZ[1]**2)
+    total = np.sqrt(distance_xy**2 + distance_xz**2 + distance_yz**2)
 
-    print(f"100 Myr, {map[num]}, XY: {distance_xy}, XZ: {distance_xz}, YZ: {distance_yz}")
+    print(f"100 Myr, {map[num]}, {total}")
