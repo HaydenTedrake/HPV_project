@@ -1,0 +1,7 @@
+plt.savefig('my_plot.png')
+
+Category    LeoI   Sextans  UrsaMajorI   Willman1    LeoII   LeoV    LeoIV
+
+Yes         
+Maybe       
+No          
