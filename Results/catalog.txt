@@ -1,5 +1,3 @@
-plt.savefig('plot.png')
-
 Category    LeoI    Sextans     UrsaMajorI      Willman1    LeoII   LeoV    LeoIV   CraterII    HydraII     ComaBerenices   CanesVenaticiII     CanesVenaticiI      BootesII    BootesI     UrsaMinor   DracoII     Hercules    Draco   Sculptor    TriangulumII    Segue2      HydrusI     Fornax      HorologiumI     ReticulumII
 
 Yes                                                                                 hvs14
