@@ -1,0 +1,14 @@
+
+        MilkyWay    LeoI    Sextans     UrsaMajorI      Willman1    LeoII   LeoV    LeoIV   CraterII    HydraII     ComaBerenices   CanesVenaticiII     CanesVenaticiI      BootesII    BootesI     UrsaMinor   DracoII     Hercules    Draco   Sculptor    TriangulumII    Segue2      HydrusI     Fornax      HorologiumI     ReticulumII     EridanusII      Carina      CarinaII    CarinaIII   UrsaMajorII     LeoT    Segue1      PegasusIII      AquariusII      TucanaII    GrusI       PiscesII    TucanaIII
+
+hvs5
+
+hvs8
+
+hvs14   0.526
+
+hvs17   1.608e-10
+
+hvs23
+
+* forecasting done
