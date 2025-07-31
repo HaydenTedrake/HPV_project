@@ -1,11 +1,11 @@
 
-        MilkyWay    LeoI    Sextans     UrsaMajorI      Willman1    LeoII   LeoV    LeoIV   CraterII    HydraII     ComaBerenices   CanesVenaticiII     CanesVenaticiI      BootesII    BootesI     UrsaMinor   DracoII     Hercules    Draco   Sculptor    TriangulumII    Segue2      HydrusI     Fornax      HorologiumI     ReticulumII     EridanusII      Carina      CarinaII    CarinaIII   UrsaMajorII     LeoT    Segue1      PegasusIII      AquariusII      TucanaII    GrusI       PiscesII    TucanaIII
+        MilkyWay    LeoI    Sextans     UrsaMajorI      Willman1    LeoII   LeoV        LeoIV   CraterII    HydraII     ComaBerenices   CanesVenaticiII     CanesVenaticiI      BootesII    BootesI     UrsaMinor   DracoII     Hercules    Draco   Sculptor    TriangulumII    Segue2      HydrusI     Fornax      HorologiumI     ReticulumII     EridanusII      Carina      CarinaII    CarinaIII   UrsaMajorII     LeoT    Segue1      PegasusIII      AquariusII      TucanaII    GrusI       PiscesII    TucanaIII
 
-hvs5    3.984e-08                                       0.0                                                                                                                                                                                                                             0.0
+hvs5    3.984e-08                                       0.0                                                                                                                                                                                                                                 0.0
 
-hvs8    0.081                                                                                                       0.0*                                                    2.816e-10                                                                                                                                                                                                                                       0.0         0.0*                                                    0.0*
+hvs8    0.081                                                                                                           0.0*                                                    2.816e-10                                                                                                                                                                                                                                       0.0         0.0*                                                    0.0*
 
-hvs14   0.526       0.0     0.445#      0.0*            2.960e-09   0.0
+hvs14   0.526       0.0     0.445#      0.0*            2.960e-09   0.0     2.804e-05*  0.004   0.687#      0.704#
 
 hvs17   1.608e-10
 
@@ -14,7 +14,7 @@ hvs23
 * some overlapped
 # forecasting needed/done
 notes:
-- sextans and hvs14 times are off
+- sextans,leoV and hvs14 times are off
 
         OriginalPME     Galaxy
 
