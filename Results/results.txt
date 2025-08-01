@@ -5,7 +5,7 @@ hvs5    3.984e-08                                       0.0                     
 
 hvs8    0.081                                                                                                           0.0*                                                    2.816e-10                                                                                                                                                                                                                                       0.0         0.0*                                                    0.0*
 
-hvs14   0.526       0.0     0.445#      0.0*            2.960e-09   0.0     2.804e-05*  0.004   0.687#      0.704#
+hvs14   0.526       0.0     0.445#      0.0*            2.960e-09   0.0     2.804e-05*  0.004   0.687#      0.704#      0.001*
 
 hvs17   1.608e-10
 
@@ -16,11 +16,7 @@ hvs23
 notes:
 - sextans,leoV and hvs14 times are off
 
-        OriginalPME     Galaxy
-
-hvs5
-
-hvs8
+        OriginalPME     Sextans     CraterII    HydraII
 
 hvs14
 
