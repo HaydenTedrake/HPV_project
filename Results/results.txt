@@ -16,8 +16,6 @@ hvs23   0.586       0.0*     1.641e-09*  0.004*         0.003*      0.0     0.0 
 notes:
 - sextans,leoV and hvs14 times are off
 
-        OriginalPME     Sextans     CraterII    HydraII
+        OriginalPME     CraterII    HydraII
 
-hvs14
-
-hvs23
+hvs14   1.38, 1.68      0.4         0.4
